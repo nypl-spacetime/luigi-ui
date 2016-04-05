@@ -2,7 +2,7 @@ body {
   background-color: #fefefe;
 }
 
-body, a, a:visited {
+body, a, a:visited, a:hover {
   color: #111;
 }
 
