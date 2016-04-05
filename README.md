@@ -2,6 +2,8 @@
 
 Web interface to start [Luigi](https://github.com/spotify/luigi/) tasks.
 
+![](screenshot.png)
+
 ## Installation
 
 Install [Flask](http://flask.pocoo.org/):
