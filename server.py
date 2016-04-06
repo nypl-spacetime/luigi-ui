@@ -39,13 +39,8 @@ def start_task():
     data = request.json
     # TODO: see if data contains module + class, both should exist in tasks
 
-    #package = importlib.import_module(data['module'])
-    #klass = data['class']
-    #task = getattr(package, data['class'])
-
-    cmd = 'luigi --module {module} {klass}'.format(
-        module=data['module'], klass=data['class'])
-    print cmd
+    cmd = 'luigi --module {} {}'.format(
+        data['module'], data['class'])
     subprocess.Popen(cmd.split())
 
     return Response(json.dumps({'success': True}),  mimetype='application/json')
