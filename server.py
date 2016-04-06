@@ -21,8 +21,17 @@ for package_name in config['packages']:
         module = __import__(modname, fromlist="dummy")
         for name, obj in inspect.getmembers(module):
             if inspect.isclass(obj):
+                parameters = []
+                for name, param in inspect.getmembers(obj):
+                    if isinstance(getattr(obj, name), luigi.parameter.Parameter):
+                        parameters.append({
+                            'name': name,
+                            'type': type(param).__name__,
+                            'default': getattr(obj, name)._default
+                        })
+
                 if isinstance(obj(), luigi.task.Task):
-                    module_tasks.append({'class': obj.__name__, 'parameters': []})
+                    module_tasks.append({'class': obj.__name__, 'parameters': parameters})
 
         tasks.append({'module': modname, 'tasks': module_tasks})
 
